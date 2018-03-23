@@ -25,6 +25,7 @@
     "es6-promise": "^4.2.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
+    "html-loader": "^0.5.5",
     "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
     "http-server": "^0.11.1",
     "less": "^3.0.1",
@@ -32,11 +33,14 @@
     "object-assign": "^4.1.1",
     "postcss-loader": "^2.1.1",
     "style-loader": "^0.20.2",
+    "uglify-loader": "^2.0.0",
     "webpack": "^4.1.0",
     "webpack-assets-manifest": "^2.0.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.10",
     "webpack-dev-server": "^3.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "reveal.js": "^3.6.0"
+  }
 }

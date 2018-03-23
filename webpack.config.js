@@ -13,7 +13,7 @@ const generateManifest = process.env.GENERATE_MANIFEST === 'true';
 const generateReport = process.env.GENERATE_REPORT === 'true';
 const generateBuildSourceMap = process.env.GENERATE_BUILD_SOURCEMAP === 'true';
 
-const enableHMR = isDevelopment;
+const enableHMR = false;
 const generateCSSSourceMap = isDevelopment || generateBuildSourceMap;
 const WebpackAssetsManifest = generateManifest && require('webpack-assets-manifest');
 const BundleAnalyzerPlugin = generateReport && require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -52,12 +52,26 @@ const rules = [
     })
   },
   {
+      test: /\.html$/,
+      use: {
+        loader: 'html-loader',
+        options: {
+          attrs: [':data-background-image', ':src']
+        }
+      }
+  },
+  {
     test: /\.(jpe?g|png|gif|webp|svg)$/,
     loader: 'file-loader?name=img/[name].[hash:8].[ext]'
   },
   {
     test: /\.(woff|woff2|ttf|eot)$/,
     loader: 'file-loader?name=font/[name].[hash:8].[ext]'
+  },
+  //special loaders
+  {
+      test: /.*(reveal.js\\plugin).*$/,
+      loader: 'file-loader?name=./plugin/[name].[ext]'
   }
 ];
 
@@ -118,7 +132,9 @@ const devPlugins = enableHMR
       new webpack.NoEmitOnErrorsPlugin(),
       new ClearConsolePlugin()
     ]
-  : new Array();
+  : [
+    new ClearConsolePlugin()
+  ];
 
 const buildPlugins = [
   new CleanWebpackPlugin(buildDirectory)

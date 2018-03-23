@@ -1,5 +1,105 @@
-body {
-  @color: #fafafa;
-  background: @color;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+@import '~reveal.js/css/reveal.css';
+@import '~reveal.js/css/theme/night.css';
+
+::selection {
+  background: rgba(0,0,0,0.5);
+}
+
+.slides {
+  h1,h2,h3,p {
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-weight: bold;
+    text-shadow: 3px 3px 1px #000;
+  }
+  p {
+    font-family: 'Saira Extra Condensed', sans-serif;
+    font-weight: normal;
+  }
+  h1 {
+    font-size: 3em;
+    white-space: nowrap;
+    text-shadow: 3px 3px 1px #000;
+  }
+  h2 {
+    font-size: 2.5em;
+  }
+  a {
+    color: inherit;
+  }
+  .transform {
+    transform: translate(300px,0);
+    transition: transform 2.5s;
+    will-change: transform;
+  }
+  .present > .transform {
+    transform: translate(0,0);
+  }
+}
+
+.reveal {
+  .progress {
+    color: rgba(0,0,0,0.5);
+  }
+}
+
+.present > .enlarge, .present > .transform > .enlarge, .fragment.visible > .enlarge {
+  white-space: nowrap;
+  animation: enlarge 30s 1s alternate both infinite linear;
+}
+
+.loading {
+  width: 3em;
+  text-align: left;
+  margin: 0 auto !important;
+  &:after {
+    content: 'Loading...';
+    font-weight: normal;
+    .present & {
+      animation: loading 1s infinite  linear;
+    }
+  }
+}
+
+.cloudSlide {
+  p span {
+    display: inline-block;
+  }
+  .fragment.visible {
+    transition: none !important;
+    transform-origin: center left;
+    animation: fragmentAnimation 0.5s forwards;
+  }
+}
+
+@keyframes enlarge {
+  0% {
+    letter-spacing: normal;
+  }
+  100% {
+    letter-spacing: 15px;
+  }
+}
+
+@keyframes fragmentAnimation {
+  0% {
+    transform: scaleX(0) scaleY(1.2);
+  }
+  100% {
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+@keyframes loading {
+  0% {
+    content: 'Loading.'
+  }
+  33% {
+    content: 'Loading..'
+  }
+  66% {
+    content: 'Loading...'
+  }
+  100% {
+    content: 'Loading'
+  }
 }
