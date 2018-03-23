@@ -9,7 +9,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "build": "cross-env NODE_ENV=production webpack -p --progress",
-    "build:server": "npm run build && cross-env NODE_ENV=production http-server build -p 8000 -s"
+    "build:server": "npm run build && cross-env NODE_ENV=production http-server build -p 8000 -s",
+    "deploy": "npm run build && gh-pages -d build -m \"Commit through bot\" && rm -r build"
   },
   "devDependencies": {
     "autoprefixer": "^8.1.0",
@@ -25,6 +26,7 @@
     "es6-promise": "^4.2.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "file-loader": "^1.1.11",
+    "gh-pages": "^1.1.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
     "http-server": "^0.11.1",
